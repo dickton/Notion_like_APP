@@ -51,7 +51,7 @@ public interface EventsContract {
 
         void notifyRestart();   //通知Fragment中的RecyclerView数据可能更新了
 
-        void result(int requestCode, int resultCode);
+        //void result(int requestCode, int resultCode);
 
         void clearOverdueEvents();
 

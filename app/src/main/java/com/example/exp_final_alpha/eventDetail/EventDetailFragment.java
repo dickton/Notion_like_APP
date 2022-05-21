@@ -52,6 +52,8 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
 
     private CheckBox completeCheckBox;
 
+    private final static String TAG="EVENT_DETAIL";
+
 
     public EventDetailFragment() {
         // Required empty public constructor
@@ -220,6 +222,7 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
     @Override
     public Event getCurrent() {
         String name = eventNameView.getText().toString();
+
         if (name.isEmpty()){
             //showEmptyNameError();
             return null;
@@ -265,6 +268,7 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
         boolean repeat = repeatSwitch.isChecked();
         boolean alarm = alarmSwitch.isChecked();
         boolean completed = completeCheckBox.isChecked();
+        Log.d(TAG, "getCurrent: "+priority);
 
         return new Event(name, start, due, completed, repeat, alarm, priority, null);
     }

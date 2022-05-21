@@ -56,10 +56,8 @@ public class EventDetailPresenter implements EventDetailContract.Presenter, Even
             if(event.getEventName().isEmpty()){
                 eventDetailView.showEmptyNameError();
             }
-            if(changeOccur(event)&&!isNewEvent) {
-                eventLocalDataSource.saveEvent(event);
-            }
-            eventDetailView.showEventsList();
+            eventLocalDataSource.saveEvent(event);
+            //eventDetailView.showEventsList();
         }
     }
 
@@ -107,11 +105,15 @@ public class EventDetailPresenter implements EventDetailContract.Presenter, Even
         }
     }
 
-
     public boolean changeOccur(Event event){
-        if(isNewEvent){
+        if(isNewEvent&&event.getEventName().isEmpty()){
             return false;
         }
+
+        if(isNewEvent&&!event.getEventName().isEmpty()){
+            return true;
+        }
+
         if(!this.event.getEventName().equals(event.getEventName())){
             nameChanged=true;
             Log.d(TAG, "cmpEvent: diff name!");
@@ -158,11 +160,15 @@ public class EventDetailPresenter implements EventDetailContract.Presenter, Even
         Event tempEvent= eventDetailView.getCurrent();
         if(tempEvent!=null){
             if(changeOccur(tempEvent)) {
-                if(nameChanged) {
+                if(nameChanged&&!isNewEvent) {
                     eventLocalDataSource.deleteEvent(eventName);
                     Log.d(TAG, "saveCurrent: delete" + eventName);
                 }
                 saveEvent(tempEvent);
+                this.event=tempEvent;
+                this.eventName=tempEvent.getEventName();
+                nameChanged=false;
+
             }else {
                 eventDetailView.showNothingChanged();
             }

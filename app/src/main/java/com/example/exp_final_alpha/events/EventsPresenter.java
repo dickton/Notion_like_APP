@@ -46,7 +46,6 @@ public class EventsPresenter implements EventsContract.Presenter{
         this.eventLocalDataSource = eventLocalDataSource;
         this.currentTime=System.currentTimeMillis();
         this.eventsView.setPresenter(this);
-
     }
 
     @Override
@@ -54,12 +53,15 @@ public class EventsPresenter implements EventsContract.Presenter{
         loadEvents(false);
     }
 
+    /*
     @Override
     public void result(int requestCode, int resultCode) {
         if (EventDetailActivity.REQUEST_ADD_EVENT == requestCode && Activity.RESULT_OK == resultCode) {
             eventsView.showSuccessfullySavedMessage();
         }
     }
+
+     */
 
     @Override
     public void loadEvents(boolean forceUpdate) {

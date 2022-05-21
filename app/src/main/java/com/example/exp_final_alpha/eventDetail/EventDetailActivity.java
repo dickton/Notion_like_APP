@@ -64,7 +64,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(presenter.changeOccur(fragment.getCurrent())){
+        if(!presenter.isNewEvent()&&presenter.changeOccur(fragment.getCurrent())){
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle("Notice!");
             builder.setMessage("Changes has occurred!\nPress Quit to leave without saving the changes.");

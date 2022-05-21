@@ -90,10 +90,12 @@ public class EventsFragment extends Fragment implements EventsContract.View {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         presenter.result(requestCode,resultCode);
     }
+    */
 
     @Override
     public void setPresenter(@NonNull EventsContract.Presenter presenter) {
@@ -104,10 +106,10 @@ public class EventsFragment extends Fragment implements EventsContract.View {
     public void showAddEvent() {
         Log.d("EVENT_FRAG", "showAddEvent: called!");
         Intent intent=new Intent(getContext(),EventDetailActivity.class);
-        intent.putExtra(EventDetailActivity.EXTRA_NEW_EVENT,true);
-        startActivityForResult(new Intent(getContext(),EventDetailActivity.class),
-                EventDetailActivity.REQUEST_ADD_EVENT);
-
+        //intent.putExtra(EventDetailActivity.EXTRA_NEW_EVENT,true);
+        //startActivityForResult(new Intent(getContext(),EventDetailActivity.class),
+        //        EventDetailActivity.REQUEST_ADD_EVENT);
+        startActivity(intent);
     }
 
 
