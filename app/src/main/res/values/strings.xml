@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">exp_final_alpha</string>
+    <string name="loading_events_error">Error while loading events</string>
+    <string name="successfully_saved_event_message">TO-DO saved</string>
+    <string name="events_list_create_new_event">Create Event</string>
+
+    <string name="event_detail_event_name">Event Name</string>
+    <string name="event_detail_event_start_date">Start Date</string>
+    <string name="event_detail_event_due_date">Due Date</string>
+    <string name="event_detail_event_is_completed">Completed</string>
+    <string name="event_detail_event_is_repeat">Repeat</string>
+    <string name="event_detail_event_need_alarm">Alarm</string>
+    <string name="event_detail_event_priority">Priority</string>
+
+    <string name="event_detail_edittext_hint">Empty</string>
+
+    <string name="event_empty_error_message">Error! The event is empty!</string>
+    <string name="event_empty_name_error_message">Error! The event has a empty name!</string>
+    <string name="event_empty_variable_error_message">Error! The event has empty variables!</string>
+    <string name="event_nothing_changed_message">There is no change happened!</string>
+</resources>
