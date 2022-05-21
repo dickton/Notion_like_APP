@@ -19,15 +19,17 @@ public interface EventDataSource {
 
     }
 
-    void getEvents(@NonNull LoadEventsCallback callback);
+    void getEvents(@NonNull LoadEventsCallback callback);      //读取所有事件
 
-    void getEvent(@NonNull String eventName,@NonNull GetEventCallback callback);
+    void getEvent(@NonNull String eventName,@NonNull GetEventCallback callback);    //读取单个事件
+
+    void saveEvent(@NonNull Event event);   //将数据保存到数据库中
+
+    void deleteEvent(@NonNull String eventName);    //从数据库中删除数据
 
     void getEvents(@NonNull int eventType,@NonNull LoadEventsCallback callback);
 
-    void saveEvent(@NonNull Event event);
 
-    void deleteEvent(@NonNull String eventName);
 
     void completeEvent(@NonNull String eventName);
 

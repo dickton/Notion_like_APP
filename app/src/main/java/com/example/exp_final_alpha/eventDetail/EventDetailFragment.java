@@ -19,19 +19,13 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.example.exp_final_alpha.R;
 
 import com.example.exp_final_alpha.data.Event;
 import com.google.android.material.snackbar.Snackbar;
-import com.mukesh.MarkdownView;
 
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Objects;
-import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.

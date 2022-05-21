@@ -11,9 +11,9 @@ public interface EventDetailContract {
 
         void setEventInfo(Event event);
 
-        boolean isActive();
+        boolean isActive();     //Fragment是否被添加到Activity中
 
-        void showEventsList();
+        void showEventsList();      //展示
 
         void showEmptyEventError();
 
