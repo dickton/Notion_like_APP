@@ -17,5 +17,6 @@
     <string name="event_empty_error_message">Error! The event is empty!</string>
     <string name="event_empty_name_error_message">Error! The event has a empty name!</string>
     <string name="event_empty_variable_error_message">Error! The event has empty variables!</string>
-    <string name="event_nothing_changed_message">There is no change happened!</string>
+    <string name="event_nothing_changed_message">No change occur!</string>
+    <string name="event_save_success_message">The Event was successfully saved!</string>
 </resources>

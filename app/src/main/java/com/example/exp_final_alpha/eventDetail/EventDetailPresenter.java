@@ -57,6 +57,7 @@ public class EventDetailPresenter implements EventDetailContract.Presenter, Even
                 eventDetailView.showEmptyNameError();
             }
             eventLocalDataSource.saveEvent(event);
+            eventDetailView.showSavedSuccessful();
             //eventDetailView.showEventsList();
         }
     }

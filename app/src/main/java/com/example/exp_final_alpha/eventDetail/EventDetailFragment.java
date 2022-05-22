@@ -291,6 +291,18 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
         snackbar.show();
     }
 
+    @Override
+    public void showSavedSuccessful() {
+        Snackbar snackbar = Snackbar.make(requireView(), R.string.event_save_success_message, Snackbar.LENGTH_LONG);
+        snackbar.setAction("OK", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+            }
+        });
+        snackbar.show();
+    }
+
     private void showConfirmDeleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Warning!");

@@ -25,6 +25,8 @@ public interface EventDetailContract {
 
         void showNothingChanged();  //保存时，若无变化发生，展示Snackbar
 
+        void showSavedSuccessful();
+
     }
     interface Presenter extends BasePresenter{
         void saveEvent(Event event);    //调用数据库管理类保存事件
