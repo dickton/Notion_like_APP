@@ -2,6 +2,7 @@ package com.example.exp_final_alpha.events;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -190,7 +191,7 @@ public class EventsFragment extends Fragment implements EventsContract.View {
 
                 //在此处调用presenter的打开Detail方法
                 presenter.openEventDetails(eventName);
-                Toast.makeText(getContext(),"EventDetail!",Toast.LENGTH_SHORT).show();
+
             }
         };
 
@@ -294,6 +295,17 @@ public class EventsFragment extends Fragment implements EventsContract.View {
     }
     public void setCreateNewClickListener(onCreateNewClickListener listener){
         createNewClickListener =listener;
+    }
+
+    public boolean isAppFirstRun(){
+        SharedPreferences base= getActivity().getSharedPreferences("base",Context.MODE_PRIVATE);
+        boolean isFirstStart=base.getBoolean("isAppFirstStart",true);
+        if(isFirstStart){
+            SharedPreferences.Editor editor=base.edit();
+            editor.putBoolean("isAppFirstStart",false);
+            editor.apply();
+        }
+        return isFirstStart;
     }
 
 }

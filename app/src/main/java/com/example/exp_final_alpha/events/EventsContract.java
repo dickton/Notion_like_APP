@@ -22,6 +22,8 @@ public interface EventsContract {
 
         void addEventListsToAdapter(List<Event>[] lists);//将数据库返回的列表数组交给RecyclerView的Adapter
 
+        boolean isAppFirstRun();
+
         void showSuccessfullySavedMessage();
 
         void showNoEvents();

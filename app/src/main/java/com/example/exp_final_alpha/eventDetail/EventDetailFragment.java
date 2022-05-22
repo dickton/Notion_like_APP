@@ -124,29 +124,7 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
         super.onDestroy();
     }
 
-    private void showConfirmDeleteDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Warning!");
-        builder.setMessage("Would you really want to delete this event?");
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (!presenter.isNewEvent()) {
-                    presenter.deleteEvent();
-                }else {
-                    getActivity().finish();
-                }
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
+
 
     @Override
     public void setPresenter(EventDetailContract.Presenter presenter) {
@@ -207,16 +185,6 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
     public void showEventsList() {
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
-    }
-
-    @Override
-    public void updateData() {
-        Event tempEvent = getCurrent();
-        if (tempEvent != null) {
-            presenter.saveEvent(tempEvent);
-        } else {
-            showEmptyEventError();
-        }
     }
 
     @Override
@@ -321,5 +289,29 @@ public class EventDetailFragment extends Fragment implements EventDetailContract
             }
         });
         snackbar.show();
+    }
+
+    private void showConfirmDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Warning!");
+        builder.setMessage("Would you really want to delete this event?");
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (!presenter.isNewEvent()) {
+                    presenter.deleteEvent();
+                }else {
+                    getActivity().finish();
+                }
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }

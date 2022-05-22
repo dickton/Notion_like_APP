@@ -2,6 +2,7 @@ package com.example.exp_final_alpha.events;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.exp_final_alpha.events.eventsList.ChildRecyclerViewAdapter;
 import com.example.exp_final_alpha.events.eventsList.RecyclerViewItem;
 import com.example.exp_final_alpha.util.EspressoIdlingResource;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,9 @@ public class EventsPresenter implements EventsContract.Presenter{
 
     @Override
     public void start() {
+        if(eventsView.isAppFirstRun()){
+            generateSampleInfo();
+        }
         loadEvents(false);
     }
 
@@ -70,9 +75,6 @@ public class EventsPresenter implements EventsContract.Presenter{
     }
 
     private void privateLoadEvents(boolean forceUpdate){
-        if(forceUpdate){
-
-        }
 
         EspressoIdlingResource.increment();
 
@@ -166,5 +168,47 @@ public class EventsPresenter implements EventsContract.Presenter{
     @Override
     public void notifyRestart() {
         loadEvents(true);
+    }
+
+    public void generateSampleInfo(){
+        Event overdueSample=new Event("Python",Date.valueOf("2021-2-1"),
+                Date.valueOf("2022-5-1"),true,false,false,0,null);
+        eventLocalDataSource.saveEvent(overdueSample);
+
+        Event overdueSample2=new Event("C++ course",Date.valueOf("2020-9-1"),
+                Date.valueOf("2021-1-31"),true,false,false,0,null);
+        eventLocalDataSource.saveEvent(overdueSample2);
+
+        Event longTermSample=new Event("Learning",Date.valueOf("2000-1-1"),
+                Date.valueOf("2030-1-1"),false,true,false,1,null);
+        eventLocalDataSource.saveEvent(longTermSample);
+
+        Event nextUpSample1=new Event("final exam 1",Date.valueOf("2023-6-23"),Date.valueOf("2023-6-27"),false,false,false,2,null);
+        eventLocalDataSource.saveEvent(nextUpSample1);
+
+        Event nextUpSample2=new Event("final exam 2",Date.valueOf("2023-6-23"),Date.valueOf("2023-6-27"),false,false,false,2,null);
+        eventLocalDataSource.saveEvent(nextUpSample2);
+
+        Event nextUpSample3=new Event("final exam 3",Date.valueOf("2023-6-23"),Date.valueOf("2023-6-27"),false,false,false,2,null);
+        eventLocalDataSource.saveEvent(nextUpSample3);
+
+        Event inProgressSample1=new Event("Android Learn",Date.valueOf("2022-3-1"),Date.valueOf("2022-7-20"),false,false,false,1,null);
+        eventLocalDataSource.saveEvent(inProgressSample1);
+
+        Event inProgressSample2=new Event("Course 2",Date.valueOf("2022-3-1"),Date.valueOf("2022-7-20"),false,false,false,1,null);
+        eventLocalDataSource.saveEvent(inProgressSample2);
+
+        Event inProgressSample3=new Event("Web course",Date.valueOf("2022-3-1"),Date.valueOf("2022-7-20"),false,false,false,1,null);
+        eventLocalDataSource.saveEvent(inProgressSample3);
+
+        Event inProgressSample4=new Event("Machine Learning",Date.valueOf("2022-3-1"),Date.valueOf("2022-7-20"),false,false,false,1,null);
+        eventLocalDataSource.saveEvent(inProgressSample4);
+
+        Event inProgressSample5=new Event("水课 1",Date.valueOf("2022-3-1"),Date.valueOf("2022-7-20"),false,false,false,1,null);
+        eventLocalDataSource.saveEvent(inProgressSample5);
+
+        Event inProgressSample6=new Event("水课 2",Date.valueOf("2022-3-1"),Date.valueOf("2022-7-20"),false,false,false,1,null);
+        eventLocalDataSource.saveEvent(inProgressSample6);
+
     }
 }
