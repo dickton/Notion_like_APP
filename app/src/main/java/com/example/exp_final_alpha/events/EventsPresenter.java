@@ -83,6 +83,7 @@ public class EventsPresenter implements EventsContract.Presenter{
             @Override
             public void onEventsLoaded(List<Event> events) {
                 List<Event> eventsToShow=new ArrayList<Event>();
+                //加载事件时调用EspressoIdlingResource类进行并发控制，防止冲突
                 if(!EspressoIdlingResource.getIdlingResource().isIdleNow()){
                     EspressoIdlingResource.decrement();
                 }
