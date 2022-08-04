@@ -57,6 +57,7 @@ public class EventsFragment extends Fragment implements EventsContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.start();
+        //通知Presenter启动
 
         Log.d("EVENT_FRAG","Fragment created!");
     }
@@ -75,6 +76,7 @@ public class EventsFragment extends Fragment implements EventsContract.View {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
+        //初始化外层RecyclerView并为其设置Adapter
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter=new RecyclerViewAdapter(getContext());
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -85,6 +87,7 @@ public class EventsFragment extends Fragment implements EventsContract.View {
         return root;
     }
 
+    //没啥必要留着，但是科技考古不敢删
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Log.d("EVENT_DETAIL", "onOptionsItemSelected: 111");
@@ -100,9 +103,11 @@ public class EventsFragment extends Fragment implements EventsContract.View {
 
     @Override
     public void setPresenter(@NonNull EventsContract.Presenter presenter) {
+        //为Fragment设定Presenter
         this.presenter=presenter;
     }
 
+    //创建新事件
     @Override
     public void showAddEvent() {
         Log.d("EVENT_FRAG", "showAddEvent: called!");
@@ -249,17 +254,23 @@ public class EventsFragment extends Fragment implements EventsContract.View {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             RecyclerViewItem item = items.get(position);
             List<Event> eventsList = item.getEventList();
+            //读取属于item的事件列表
+
             //Log.d("EVENT_FRAG", String.format("%d",eventsList.size()));
-            holder.textView.setText(item.getTitle());
+            holder.textView.setText(item.getTitle());       //设定主题
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,
                     LinearLayoutManager.VERTICAL, false);
 
+            //设置子RecyclerView的Adapter
             holder.ChildRecyclerView.setAdapter(new ChildRecyclerViewAdapter(eventsList, itemListener));
 
             holder.ChildRecyclerView.setLayoutManager(linearLayoutManager);
+
+            //为点击“创建新事件”设定监听
             holder.createNewView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //点击后调用Presenter的addNewEvent()函数
                     presenter.addNewEvent();
                     Log.d("EVENT_FRAG", "Create new EventActivity!");
                 }
@@ -267,6 +278,7 @@ public class EventsFragment extends Fragment implements EventsContract.View {
             Log.d("EVENT_ADAPTER","onBindViewHolder!");
         }
 
+        //返回外层RecyclerView的子项数
         @Override
         public int getItemCount() {
             return items.size();
@@ -298,6 +310,7 @@ public class EventsFragment extends Fragment implements EventsContract.View {
     }
 
     public boolean isAppFirstRun(){
+        //检测APP是否为首次启动，若APP是首次启动，则生成一个初始事件列表以展示APP效果
         SharedPreferences base= getActivity().getSharedPreferences("base",Context.MODE_PRIVATE);
         boolean isFirstStart=base.getBoolean("isAppFirstStart",true);
         if(isFirstStart){

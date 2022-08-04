@@ -25,7 +25,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
     private EventsPresenter eventsPresenter;
 
-    private ImageView imageView;
+    private ImageView imageView;    //封面的ImageView
 
     private Button btn_change_cover;
 
@@ -35,6 +35,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_events);
         btn_change_cover = findViewById(R.id.btn_change_cover);
         btn_change_cover.setOnClickListener(this);
+        //绑定“更换封面“按钮并监听点击事件
 
         imageView = findViewById(R.id.events_head_image);
         //imageView.setImageResource(R.drawable.default_cover);
@@ -43,6 +44,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+        //绑定Fragment
         EventsFragment eventsFragment = (EventsFragment) getSupportFragmentManager().
                 findFragmentById(R.id.content_frame);
         if (eventsFragment == null) {
@@ -62,12 +64,15 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     protected void onRestart() {
         super.onRestart();
         eventsPresenter.notifyRestart();
+        //当Activity重新回到前台时通知Presenter，以检测事件列表是否产生变化
     }
 
     private void getCover() {
+        //获取SharedPreferences中的封面Uri
         SharedPreferences base = getSharedPreferences("base", Context.MODE_PRIVATE);
         String imageUri = base.getString("imageUri", "");
         if (imageUri.equals("")) {
+            //若未获取到Uri，则使用默认封面
             imageView.setImageResource(R.drawable.default_cover);
         } else {
             Uri uri = Uri.parse(imageUri);
@@ -76,6 +81,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void changeCover() {
+        //更换封面
         Toast.makeText(this,"change cover clicked",Toast.LENGTH_SHORT).show();
     }
 
