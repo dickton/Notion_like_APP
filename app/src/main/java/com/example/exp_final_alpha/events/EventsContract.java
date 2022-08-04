@@ -56,6 +56,5 @@ public interface EventsContract {
         //void result(int requestCode, int resultCode);
 
         void clearOverdueEvents();
-
     }
 }
